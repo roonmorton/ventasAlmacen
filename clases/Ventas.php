@@ -105,7 +105,8 @@ class ventas
 		} else {
 			return $id + 1;
 		}
-	}
+	} 
+
 	public function nombreCliente($idCliente)
 	{
 		$c = new conectar();
@@ -117,8 +118,12 @@ class ventas
 		$result = mysqli_query($conexion, $sql);
 
 		$ver = mysqli_fetch_row($result);
+		if($ver){
+			return $ver[0] . " " . $ver[1];
 
-		return $ver[0] . " " . $ver[1];
+		}else{
+			return " ";
+		}
 	}
 
 	public function obtenerTotal($idventa)

@@ -1,6 +1,7 @@
 <?php 
 	require_once "../../clases/Conexion.php";
 	require_once "../../clases/Ventas.php";
+	include('../../phpqrcode/qrlib.php' ); 
 
 	$objv= new ventas();
 
@@ -41,13 +42,25 @@ $result=mysqli_query($conexion,$sql);
             margin-left: 0.6em;
         }
     body{
-    	font-size: xx-small;
+    	/* font-size: xx-small; */
+		font-size: 1.5em;
+		
     }
+	.ticket{
+		width: 500px;
+		margin: 1em auto;
+	}
+	.img-thumbnail{
+		margin: 0 auto;
+    display: block;
+	}
 	</style>
 
  </head>
  <body>
- 		<p>Facultad autodidacta</p>
+ 		
+<div class="ticket">
+<p>Ingenieria en sistemas</p>
  		<p>
  			Fecha: <?php echo $fecha; ?>
  		</p>
@@ -57,8 +70,7 @@ $result=mysqli_query($conexion,$sql);
  		<p>
  			cliente: <?php echo $objv->nombreCliente($idcliente); ?>
  		</p>
- 		
- 		<table style="border-collapse: collapse;" border="1">
+<table style="border-collapse: collapse; width:100%" border="1">
  			<tr>
  				<td>Nombre</td>
  				<td>Precio</td>
@@ -78,19 +90,30 @@ $result=mysqli_query($conexion,$sql);
 				$result=mysqli_query($conexion,$sql);
 				$total=0;
 				while($mostrar=mysqli_fetch_row($result)){
+
  			 ?>
  			<tr>
- 				<td><?php echo $mostrar[3]; ?></td>
- 				<td><?php echo $mostrar[4] ?></td>
+ 				<td><?php echo "Q ".$mostrar[3]; ?></td>
+ 				<td><?php echo "Q ".$mostrar[4] ?></td>
  			</tr>
  			<?php
  				$total=$total + $mostrar[4];
  				} 
  			 ?>
  			 <tr>
- 			 	<td>Total: <?php echo "$".$total ?></td>
+			  <td>Total: </td>
+ 			 	<td><?php echo "Q ".$total ?></td>
  			 </tr>
  		</table>
+		 <?php
+    $codesDir = "C:\\xampp\\htdocs\\ventasAlmacen\\public\\codes\\";   
+    $codeFile = date('d-m-Y-h-i-s').'.png';
+    QRcode::png('hola', $codesDir.$codeFile,'H',10); 
+    echo '<img class="img-thumbnail" src="'.'/ventasAlmacen/public/codes/'.$codeFile.'" />';
+ 			 ?>
+		 
+</div>
+ 		
 
  		
  </body>
