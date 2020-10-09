@@ -5,14 +5,13 @@
 	$obj= new ventas();
 
 	
-
+	
 	if(count($_SESSION['tablaComprasTemp'])==0){
 		echo 0;
 	}else{
 		$result=$obj->crearVenta();
 		if($result > 0){
 			unset($_SESSION['tablaComprasTemp']);
-
 		}
 		echo $result;
 	}

@@ -1,18 +1,18 @@
-<?php 
-			require_once "../../clases/Conexion.php";
-			$c= new conectar();
-			$conexion=$c->conexion();
+<?php
+require_once "../../clases/Conexion.php";
+$c = new conectar();
+$conexion = $c->conexion();
 
-			$sql="SELECT id_categoria,nombreCategoria 
+$sql = "SELECT id_categoria,nombreCategoria 
 					FROM categorias";
-			$result=mysqli_query($conexion,$sql);
-	 ?>
+$result = mysqli_query($conexion, $sql);
+?>
 
 
 <table class="table table-hover">
     <thead>
         <tr>
-		<th>#</th>
+            <th>#</th>
             <th>Categoria</th>
             <th>Editar</th>
             <th>Eliminar</th>
@@ -20,24 +20,23 @@
     </thead>
     <tbody>
         <?php
-	while ($ver=mysqli_fetch_row($result)):
-	 ?>
+        while ($ver = mysqli_fetch_row($result)) :
+        ?>
 
-        <tr>
-		<th scope="row"><?php echo $ver[0] ?></th>
-            <td><?php echo $ver[1] ?></td>
-            <td>
-                <span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#actualizaCategoria"
-                    onclick="agregaDato('<?php echo $ver[0] ?>','<?php echo $ver[1] ?>')">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </span>
-            </td>
-            <td>
-                <span class="btn btn-danger btn-xs" onclick="eliminaCategoria('<?php echo $ver[0] ?>')">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </span>
-            </td>
-        </tr>
+            <tr>
+                <th scope="row"><?php echo $ver[0] ?></th>
+                <td><?php echo $ver[1] ?></td>
+                <td>
+                    <span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#actualizaCategoria" onclick="agregaDato('<?php echo $ver[0] ?>','<?php echo $ver[1] ?>')">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </span>
+                </td>
+                <td>
+                    <span class="btn btn-danger btn-xs" onclick="eliminaCategoria('<?php echo $ver[0] ?>')">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </span>
+                </td>
+            </tr>
 
         <?php endwhile; ?>
     </tbody>

@@ -10,6 +10,7 @@
 	$descripcion=$_POST['descripcionV'];
 	$cantidad=$_POST['cantidadV'];
 	$precio=$_POST['precioV'];
+	$tipoPago = $_POST['formaPago'];
 
 	$sql="SELECT nombre,apellido 
 			from clientes 
@@ -32,7 +33,8 @@
 				$descripcion."||".
 				$precio."||".
 				$ncliente."||".
-				$idcliente;
+				$idcliente."||". 
+				$tipoPago;
 
 	$_SESSION['tablaComprasTemp'][]=$articulo;
 

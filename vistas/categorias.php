@@ -27,15 +27,10 @@ if (isset($_SESSION['usuario'])) {
 
                         <div class="input-group">
                             <label>Nombre</label>
-
-                            <!-- <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"> -->
                             <input type="text" class="form-control input-sm" name="categoria" id="categoria" autofocus>
                             <span class="input-group-addon">
                                 <i class="fa fa-boxes"></i></span>
                         </div>
-                        <!-- <label>Categoria</label>
-                    <input type="text" class="form-control input-sm" name="categoria" id="categoria">
-                    <p></p> -->
                         <br>
                         <span class="btn btn-primary" id="btnAgregaCategoria">Agregar</span>
                     </form>
