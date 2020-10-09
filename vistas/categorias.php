@@ -5,144 +5,182 @@ if(isset($_SESSION['usuario'])){
 	?>
 
 
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>categorias</title>
-		<?php require_once "menu.php"; ?>
-	</head>
-	<body>
+<!DOCTYPE html>
+<html>
 
-		<div class="container">
-			<h1>Categorias</h1>
-			<div class="row">
-				<div class="col-sm-4">
-					<form id="frmCategorias">
-						<label>Categoria</label>
-						<input type="text" class="form-control input-sm" name="categoria" id="categoria">
-						<p></p>
-						<span class="btn btn-primary" id="btnAgregaCategoria">Agregar</span>
-					</form>
-				</div>
-				<div class="col-sm-6">
-					<div id="tablaCategoriaLoad"></div>
-				</div>
-			</div>
-		</div>
+<head>
+    <title>categorias</title>
+    <?php require_once "menu.php"; ?>
+</head>
 
-		<!-- Button trigger modal -->
+<body>
 
-		<!-- Modal -->
-		<div class="modal fade" id="actualizaCategoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog modal-sm" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">Actualiza categorias</h4>
-					</div>
-					<div class="modal-body">
-						<form id="frmCategoriaU">
-							<input type="text" hidden="" id="idcategoria" name="idcategoria">
-							<label>Categoria</label>
-							<input type="text" id="categoriaU" name="categoriaU" class="form-control input-sm">
-						</form>
+    <div class="container">
+        <h3>Categorias</h3>
+        <hr>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Agregar</h3>
+            </div>
+            <div class="panel-body">
+                <form id="frmCategorias">
+
+                    <div class="input-group">
+                        
+                        <!-- <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"> -->
+                        <input type="text" class="form-control input-sm" name="categoria" id="categoria" autofocus>
+                        <span class="input-group-addon">
+                            <i class="fa fa-boxes"></i></span>
+                    </div>
+                    <!-- <label>Categoria</label>
+                    <input type="text" class="form-control input-sm" name="categoria" id="categoria">
+                    <p></p> -->
+					<br>
+                    <span class="btn btn-primary" id="btnAgregaCategoria">Agregar</span>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="panel  panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Listado</h3>
+            </div>
+            <div class="panel-body">
+                <!-- <table class="table table-hover">
+
+                </table> -->
+                <div id="tablaCategoriaLoad"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="container">
+        <h1>Categorias</h1>
+        <div class="row">
+            <div class="col-sm-4">
+                
+            </div>
+            <div class="col-sm-6">
+                <div id="tablaCategoriaLoad"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="actualizaCategoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Actualiza categorias</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="frmCategoriaU">
+                        <input type="text" hidden="" id="idcategoria" name="idcategoria">
+                        <label>Categoria</label>
+                        <input type="text" id="categoriaU" name="categoriaU" class="form-control input-sm">
+                    </form>
 
 
-					</div>
-					<div class="modal-footer">
-						<button type="button" id="btnActualizaCategoria" class="btn btn-warning" data-dismiss="modal">Guardar</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnActualizaCategoria" class="btn btn-warning"
+                        data-dismiss="modal">Guardar</button>
 
-					</div>
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	</body>
-	</html>
-	<script type="text/javascript">
-		$(document).ready(function(){
+</body>
 
-			$('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
+</html>
+<script type="text/javascript">
+$(document).ready(function() {
 
-			$('#btnAgregaCategoria').click(function(){
+    $('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
 
-				vacios=validarFormVacio('frmCategorias');
+    $('#btnAgregaCategoria').click(function() {
 
-				if(vacios > 0){
-					alertify.alert("Debes llenar todos los campos!!");
-					return false;
-				}
+        vacios = validarFormVacio('frmCategorias');
 
-				datos=$('#frmCategorias').serialize();
-				$.ajax({
-					type:"POST",
-					data:datos,
-					url:"../procesos/categorias/agregaCategoria.php",
-					success:function(r){
-						if(r==1){
-					//esta linea nos permite limpiar el formulario al insetar un registro
-					$('#frmCategorias')[0].reset();
+        if (vacios > 0) {
+            alertify.alert("Debes llenar todos los campos!!");
+            return false;
+        }
 
-					$('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
-					alertify.success("Categoria agregada con exito :D");
-				}else{
-					alertify.error("No se pudo agregar categoria");
-				}
-			}
-		});
-			});
-		});
-	</script>
+        datos = $('#frmCategorias').serialize();
+        $.ajax({
+            type: "POST",
+            data: datos,
+            url: "../procesos/categorias/agregaCategoria.php",
+            success: function(r) {
+                if (r == 1) {
+                    //esta linea nos permite limpiar el formulario al insetar un registro
+                    $('#frmCategorias')[0].reset();
 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#btnActualizaCategoria').click(function(){
+                    $('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
+                    alertify.success("Categoria agregada con exito :D");
+                } else {
+                    alertify.error("No se pudo agregar categoria");
+                }
+            }
+        });
+    });
+});
+</script>
 
-				datos=$('#frmCategoriaU').serialize();
-				$.ajax({
-					type:"POST",
-					data:datos,
-					url:"../procesos/categorias/actualizaCategoria.php",
-					success:function(r){
-						if(r==1){
-							$('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
-							alertify.success("Actualizado con exito :)");
-						}else{
-							alertify.error("no se pudo actaulizar :(");
-						}
-					}
-				});
-			});
-		});
-	</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#btnActualizaCategoria').click(function() {
 
-	<script type="text/javascript">
-		function agregaDato(idCategoria,categoria){
-			$('#idcategoria').val(idCategoria);
-			$('#categoriaU').val(categoria);
-		}
+        datos = $('#frmCategoriaU').serialize();
+        $.ajax({
+            type: "POST",
+            data: datos,
+            url: "../procesos/categorias/actualizaCategoria.php",
+            success: function(r) {
+                if (r == 1) {
+                    $('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
+                    alertify.success("Actualizado con exito :)");
+                } else {
+                    alertify.error("no se pudo actaulizar :(");
+                }
+            }
+        });
+    });
+});
+</script>
 
-		function eliminaCategoria(idcategoria){
-			alertify.confirm('¿Desea eliminar esta categoria?', function(){ 
-				$.ajax({
-					type:"POST",
-					data:"idcategoria=" + idcategoria,
-					url:"../procesos/categorias/eliminarCategoria.php",
-					success:function(r){
-						if(r==1){
-							$('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
-							alertify.success("Eliminado con exito!!");
-						}else{
-							alertify.error("No se pudo eliminar :(");
-						}
-					}
-				});
-			}, function(){ 
-				alertify.error('Cancelo !')
-			});
-		}
-	</script>
-	<?php 
+<script type="text/javascript">
+function agregaDato(idCategoria, categoria) {
+    $('#idcategoria').val(idCategoria);
+    $('#categoriaU').val(categoria);
+}
+
+function eliminaCategoria(idcategoria) {
+    alertify.confirm('¿Desea eliminar esta categoria?', function() {
+        $.ajax({
+            type: "POST",
+            data: "idcategoria=" + idcategoria,
+            url: "../procesos/categorias/eliminarCategoria.php",
+            success: function(r) {
+                if (r == 1) {
+                    $('#tablaCategoriaLoad').load("categorias/tablaCategorias.php");
+                    alertify.success("Eliminado con exito!!");
+                } else {
+                    alertify.error("No se pudo eliminar :(");
+                }
+            }
+        });
+    }, function() {
+        alertify.error('Cancelo !')
+    });
+}
+</script>
+<?php 
 }else{
 	header("location:../index.php");
 }
