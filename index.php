@@ -81,7 +81,8 @@
 							<button type="submit" class="btn btn-info " id="entrarSistema" style="width: 100%">Entrar</button>
                            <!--  <span class="btn btn-info " id="entrarSistema" style="width: 100%">Entrar</span> -->
                             <?php  if(!$validar): ?>
-                            <a href="registro.php" class="btn btn-danger " style="width: 100%">Registrar</a>
+                                
+                            <a href="registro.php" class="btn btn-danger " style="width: 100%; margin-top: 1em">Registrar</a>
                             <?php endif; ?>
                         </form>
 

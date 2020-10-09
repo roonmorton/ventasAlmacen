@@ -10,7 +10,10 @@
 		echo 0;
 	}else{
 		$result=$obj->crearVenta();
-		unset($_SESSION['tablaComprasTemp']);
+		if($result > 0){
+			unset($_SESSION['tablaComprasTemp']);
+
+		}
 		echo $result;
 	}
  ?>

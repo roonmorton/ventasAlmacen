@@ -41,23 +41,48 @@ class ventas{
 		$datos=$_SESSION['tablaComprasTemp'];
 		$idusuario=$_SESSION['iduser'];
 		$r=0;
+		$rollback = array();
 
 		for ($i=0; $i < count($datos) ; $i++) { 
 			$d=explode("||", $datos[$i]);
 
-			$sql="INSERT into ventas (id_venta,
-										id_cliente,
-										id_producto,
-										id_usuario,
-										precio,
-										fechaCompra)
-							values ('$idventa',
-									'$d[5]',
-									'$d[0]',
-									'$idusuario',
-									'$d[3]',
-									'$fecha')";
-			$r=$r + $result=mysqli_query($conexion,$sql);
+			$sql = 'select cantidad from articulos where id_producto ='.$d[0];
+			$sProducto = mysqli_query($conexion,$sql);
+			$cantidad=mysqli_fetch_row($sProducto)[0];
+
+			if($cantidad > 0 ){
+
+				$sql="INSERT into ventas (id_venta,
+				id_cliente,
+				id_producto,
+				id_usuario,
+				precio,
+				fechaCompra)
+	values ('$idventa',
+			'$d[5]',
+			'$d[0]',
+			'$idusuario',
+			'$d[3]',
+			'$fecha')";
+$r=$r + $result=mysqli_query($conexion,$sql);
+
+$sql = 'UPDATE articulos set cantidad = (cantidad-1) where id_producto ='.$d[0];
+mysqli_query($conexion,$sql);
+array_push($rollback, $d[0]);
+			}else{
+				for ($ii = 0;$ii < count($rollback);$ii++)
+                {
+                    $sql = 'UPDATE articulos set cantidad = (cantidad+1) where id_producto =' . $rollback[$ii];
+                    mysqli_query($conexion, $sql);
+
+                }
+				$sql = 'delete from ventas where id_venta = '.$idventa;
+				$sProducto = mysqli_query($conexion,$sql);
+				$r = -1;
+			break;
+			}
+
+
 		}
 
 		return $r;
