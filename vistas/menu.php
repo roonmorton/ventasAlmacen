@@ -39,7 +39,7 @@
               </ul>
             </li>
 
-           
+
 
             <?php
             if ($_SESSION['usuario'] == "admin") :
@@ -53,9 +53,19 @@
 
             <li><a href="clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
             </li>
-            <li><a href="ventas.php"></span> Venta</a>
-            </li>
 
+            <!-- <li><a href="ventas.php"></span> Venta</a>
+            </li>
+ -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span> Movimientos <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="Caja.php">Caja</a></li>
+                <li>
+                <li><a href="ventas.php"></span> Venta</a>
+                </li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Reportes <span class="caret"></span></a>
               <ul class="dropdown-menu">
