@@ -5,6 +5,7 @@
 	$c= new conectar();
 	$conexion=$c->conexion();
 
+
 	$idcliente=$_POST['clienteVenta'];
 	$idproducto=$_POST['productoVenta'];
 	$descripcion=$_POST['descripcionV'];
@@ -36,6 +37,11 @@
 				$idcliente."||". 
 				$tipoPago;
 
+	if(!isset($_SESSION['caja'])){
+		$_SESSION['caja'] = $_POST['idCaja'];
+	}
+	
+	print_r($_SESSION['caja']);
 	$_SESSION['tablaComprasTemp'][]=$articulo;
 
  ?>

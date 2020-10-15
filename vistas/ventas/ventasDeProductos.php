@@ -12,6 +12,16 @@ $conexion = $c->conexion();
 	</div>
 	<div class="panel-body">
 		<form id="frmVentasProductos">
+			<label for="">Caja</label>
+			<select class="form-control" id="idCaja" name="idCaja">
+				<?php
+				$sql = "select idCaja, num, descripcion from caja";
+				$result = mysqli_query($conexion, $sql);
+				while ($caja = mysqli_fetch_row($result)) :
+				?>
+					<option value="<?php echo $caja[0] ?>"><?php echo $caja[1] . " || " . $caja[2] ?></option>
+				<?php endwhile; ?>
+			</select>
 			<label>Cliente</label>
 			<select class="form-control" id="clienteVenta" name="clienteVenta">
 				<option value="A">Selecciona</option>
@@ -74,7 +84,7 @@ $conexion = $c->conexion();
 			<span class="btn btn-primary" id="btnAgregaVenta">Agregar producto</span>
 			<span class="btn btn-danger" id="btnVaciarVentas">Vaciar ventas</span>
 			<span class="btn btn-success" onclick="crearVenta()"> Generar venta
- 		</span>
+			</span>
 		</form>
 	</div>
 </div>
@@ -83,21 +93,9 @@ $conexion = $c->conexion();
 		<h3 class="panel-title">Detalle</h3>
 	</div>
 	<div class="panel-body">
-	<div id="tablaVentasTempLoad"></div>
+		<div id="tablaVentasTempLoad"></div>
 	</div>
 </div>
-
-<!-- <h4>Vender un producto</h4>
-<div class="row">
-	<div class="col-sm-4">
-
-	</div>
-	<div class="col-sm-3">
-	</div>
-	<div class="col-sm-4">
-		
-	</div>
-</div> -->
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -179,16 +177,17 @@ $conexion = $c->conexion();
 				} else {
 					alertify.error("No se pudo crear la venta");
 				} */
-				if(r > 0){
+				if (r > 0) {
 					$('#tablaVentasTempLoad').load("ventas/tablaVentasTemp.php");
 					$('#frmVentasProductos')[0].reset();
 					alertify.alert("Venta creada con exito, consulte la informacion de esta en ventas hechas :D");
-				}else if(r==0){
+				} else if (r == 0) {
 					alertify.alert("No hay lista de venta!!");
-				}else if(r == -1){
+				} else if (r == -1) {
 					alertify.error("No hay existencia de producto");
-				}
-				else{
+				} else if (r == -2) {
+					alertify.error("Caja no aperturada");
+				} else {
 					alertify.error("No se pudo crear la venta" + r);
 				}
 			}

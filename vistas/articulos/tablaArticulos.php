@@ -2,17 +2,17 @@
 require_once "../../clases/Conexion.php";
 $c = new conectar();
 $conexion = $c->conexion();
-$sql = "SELECT art.nombre,
-					art.descripcion,
-					art.cantidad,
-					art.precio,
-					img.ruta,
-					cat.nombreCategoria,
-					art.id_producto
+$sql = "SELECT art.nombre, 
+					art.descripcion, 
+					art.cantidad, 
+					art.precio, 
+					img.ruta, 
+					cat.nombreCategoria, 
+					art.id_producto 
 		  from articulos as art 
-		  inner join imagenes as img
-		  on art.id_imagen=img.id_imagen
-		  inner join categorias as cat
+		  inner join imagenes as img 
+		  on art.id_imagen=img.id_imagen 
+		  inner join categorias as cat 
 		  on art.id_categoria=cat.id_categoria";
 $result = mysqli_query($conexion, $sql);
 

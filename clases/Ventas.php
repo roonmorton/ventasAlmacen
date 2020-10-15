@@ -39,29 +39,43 @@ class ventas
 		$c = new conectar();
 		$conexion = $c->conexion();
 
-		$fecha = date('Y-m-d');
-		$idventa = self::creaFolio();
-		$datos = $_SESSION['tablaComprasTemp'];
-		$idusuario = $_SESSION['iduser'];
-		$r = 0;
-		$rollback = array();
+		$caja = $_SESSION['caja'];
+		$sql = "select idCajaVentas from caja 
+		inner join caja_ventas 
+		ON caja.idCaja = caja_ventas.idCaja
+		WHERE caja_ventas.fechaCierre <=> null and caja.idCaja = $caja";
 
-		for ($i = 0; $i < count($datos); $i++) {
-			$d = explode("||", $datos[$i]);
+		$resul = mysqli_query($conexion, $sql);
+		$id = mysqli_fetch_row($resul);
 
-			$sql = 'select cantidad from articulos where id_producto =' . $d[0];
-			$sProducto = mysqli_query($conexion, $sql);
-			$cantidad = mysqli_fetch_row($sProducto)[0];
+		if ($id == "" or $id == null or $id == 0) {
+			return -2;
+		} else {
+			$caja = $id[0];
+			$fecha = date('Y-m-d');
+			$idventa = self::creaFolio();
+			$datos = $_SESSION['tablaComprasTemp'];
+			$idusuario = $_SESSION['iduser'];
+			$r = 0;
+			$rollback = array();
 
-			if ($cantidad > 0) {
+			for ($i = 0; $i < count($datos); $i++) {
+				$d = explode("||", $datos[$i]);
 
-				$sql = "INSERT into ventas (id_venta,
+				$sql = 'select cantidad from articulos where id_producto =' . $d[0];
+				$sProducto = mysqli_query($conexion, $sql);
+				$cantidad = mysqli_fetch_row($sProducto)[0];
+
+				if ($cantidad > 0) {
+
+					$sql = "INSERT into ventas (id_venta,
 				id_cliente,
 				id_producto,
 				id_usuario,
 				precio,
 				fechaCompra,
-				tipo_pago
+				tipo_pago,
+				idCajaVentas
 				)
 	values ('$idventa',
 			'$d[5]',
@@ -69,25 +83,26 @@ class ventas
 			'$idusuario',
 			'$d[3]',
 			'$fecha',
-			'$d[6]')";
-				$r = $r + $result = mysqli_query($conexion, $sql);
+			'$d[6]',
+			$caja)";
+					$r = $r + $result = mysqli_query($conexion, $sql);
 
-				$sql = 'UPDATE articulos set cantidad = (cantidad-1) where id_producto =' . $d[0];
-				mysqli_query($conexion, $sql);
-				array_push($rollback, $d[0]);
-			} else {
-				for ($ii = 0; $ii < count($rollback); $ii++) {
-					$sql = 'UPDATE articulos set cantidad = (cantidad+1) where id_producto =' . $rollback[$ii];
+					$sql = 'UPDATE articulos set cantidad = (cantidad-1) where id_producto =' . $d[0];
 					mysqli_query($conexion, $sql);
+					array_push($rollback, $d[0]);
+				} else {
+					for ($ii = 0; $ii < count($rollback); $ii++) {
+						$sql = 'UPDATE articulos set cantidad = (cantidad+1) where id_producto =' . $rollback[$ii];
+						mysqli_query($conexion, $sql);
+					}
+					$sql = 'delete from ventas where id_venta = ' . $idventa;
+					$sProducto = mysqli_query($conexion, $sql);
+					$r = -1;
+					break;
 				}
-				$sql = 'delete from ventas where id_venta = ' . $idventa;
-				$sProducto = mysqli_query($conexion, $sql);
-				$r = -1;
-				break;
 			}
+			return $r;
 		}
-
-		return $r;
 	}
 
 	public function creaFolio()
@@ -105,7 +120,7 @@ class ventas
 		} else {
 			return $id + 1;
 		}
-	} 
+	}
 
 	public function nombreCliente($idCliente)
 	{
@@ -118,10 +133,9 @@ class ventas
 		$result = mysqli_query($conexion, $sql);
 
 		$ver = mysqli_fetch_row($result);
-		if($ver){
+		if ($ver) {
 			return $ver[0] . " " . $ver[1];
-
-		}else{
+		} else {
 			return " ";
 		}
 	}

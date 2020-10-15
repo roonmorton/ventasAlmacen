@@ -127,9 +127,9 @@ $(document).ready(function() {
         login();
 	});
 	
-    $('#entrarSistema').click(function() {
+    /* $('#entrarSistema').click(function() {
         login();
-	});
+	}); */
 	
 	function login(){
 		vacios = validarFormVacio('frmLogin');
