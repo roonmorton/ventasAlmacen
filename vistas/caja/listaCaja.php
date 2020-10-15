@@ -3,7 +3,8 @@ require_once "../../clases/Conexion.php";
 $c = new conectar();
 $conexion = $c->conexion();
 
-$sql = "select caja.descripcion, caja_ventas.fechaApertura, caja_ventas. fechaCierre, caja_ventas.saldoInicial,  sum(ventas.precio) as monto, caja.idCaja from caja 
+$sql = "select caja.descripcion, caja_ventas.fechaApertura, caja_ventas. fechaCierre, caja_ventas.saldoInicial,  
+sum(ventas.precio) as monto, caja.idCaja, caja_ventas.idCajaVentas from caja 
 inner join caja_ventas 
 on caja.idCaja = caja_ventas.idCaja
 left join ventas 
@@ -22,6 +23,8 @@ $result = mysqli_query($conexion, $sql);
             <th>SALDO INICIAL</th>
             <th>MONTO ACTUAL</th>
             <th>CIERRE</th>
+            <th>REPORTE</th>
+
         </tr>
     </thead>
     <tbody>
@@ -35,10 +38,17 @@ $result = mysqli_query($conexion, $sql);
                 <td><?php echo $ver[2] ?></td>
                 <td><?php echo $ver[3] ?></td>
                 <td><?php echo $ver[4] ?></td>
-                <td><?php if ($ver[2] == null) { ?>
-                    <span class="btn btn-danger btn-xs" onclick="cerrarCaja('<?php echo $ver[5] ?>')">
-                        Cerrar caja
-                    </span>
+                <td>
+                    <?php if ($ver[2] == null) { ?>
+                        <span class="btn btn-danger btn-xs" onclick="cerrarCaja('<?php echo $ver[5] ?>')">
+                            Cerrar caja
+                        </span>
+                    <?php } ?></td>
+                <td>
+                    <?php if ($ver[2] != null) { ?>
+                        <a class="btn btn-success btn-xs" href="reporteCierreCaja.php?cierre=<?php echo $ver[6] ?>" >
+                            Reporte
+                        </a>
                     <?php } ?></td>
             </tr>
 
