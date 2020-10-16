@@ -47,7 +47,7 @@
 					</div> -->
 
                         <br>
-                        <form id="frmLogin" autocomplete="on">
+                        <form id="frmLogin" autocomplete="on" method="POST">
                             <div class="form-group">
                                 <label for="username">Usuario</label>
                                 <div class="input-group mb-3 required form-group ">

@@ -10,7 +10,7 @@ $obj = new ventas();
 
 $sql = "SELECT id_venta,
 				fechaCompra,
-				id_cliente, count(1), sum(precio)
+				id_cliente, count(1), sum(precio) , tipo_pago
 			from ventas group by id_venta order by id_venta DESC";
 $result = mysqli_query($conexion, $sql);
 ?>
@@ -29,6 +29,7 @@ $result = mysqli_query($conexion, $sql);
 						<th>FECHA</th>
 						<th>CLIENTE</th>
 						<th>TOTAL</th>
+						<th>TIPO PAGO</th>
 						<th>PRODUCTOS</th>
 						<th>Ticket</th>
 					</tr>
@@ -51,6 +52,11 @@ $result = mysqli_query($conexion, $sql);
 							<td>
 								<?php
 								echo  'Q. ' . $ver[4]
+								?>
+							</td>
+							<td>
+								<?php
+								echo  $ver[5] == 'E' ? 'EFECTIVO' : ($ver[5] == 'T' ? 'TARJETA' : '');
 								?>
 							</td>
 							<td>
