@@ -21,8 +21,6 @@ if (isset($_SESSION['usuario'])) {
 	</head>
 
 	<body>
-
-
 		<div class="container">
 			<h3>Articulos</h3>
 			<hr>
@@ -32,17 +30,14 @@ if (isset($_SESSION['usuario'])) {
 				</div>
 				<div class="panel-body">
 					<form id="frmArticulos" enctype="multipart/form-data">
-
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="input-group" style="width: 100%;">
 									<label>Nombre</label>
 									<input type="text" class="form-control input-sm" id="nombre" name="nombre" autofocus>
 								</div>
-
 							</div>
 							<div class="col-sm-6">
-
 								<label>Categoria</label>
 								<select class="form-control input-sm" id="categoriaSelect" name="categoriaSelect">
 									<option value="A">Selecciona Categoria</option>
@@ -50,48 +45,22 @@ if (isset($_SESSION['usuario'])) {
 										<option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
 									<?php endwhile; ?>
 								</select>
-
 							</div>
-
 						</div>
-
-
-
-
-
 						<div class="row">
 							<div class="col-sm-6">
 								<label>Cantidad</label>
 								<input type="text" class="form-control input-sm" id="cantidad" name="cantidad">
-
-
 							</div>
 							<div class="col-sm-6">
-								<!-- <label>Precio</label>
-								<input type="text" class="form-control input-sm" id="precio" name="precio">
- -->
 								<label>Precio</label>
 								<div class="input-group">
 									<span class="input-group-addon">Q.</span>
 									<input type="text" class="form-control input-sm" id="precio" name="precio">
 								</div>
 							</div>
-
 						</div>
-
-						<label>Descripcion</label>
-						<!-- <input type="text" class="form-control input-sm" id="descripcion" name="descripcion"> -->
-						<textarea class="form-control input-sm" id="descripcion" name="descripcion" rows="3"></textarea>
-
-
-						<!-- <label>Nombre</label>
-						<input type="text" class="form-control input-sm" id="nombre" name="nombre">
-						<label>Descripcion</label>
-						<input type="text" class="form-control input-sm" id="descripcion" name="descripcion">
-						<label>Cantidad</label>
-						<input type="text" class="form-control input-sm" id="cantidad" name="cantidad">
-						<label>Precio</label>
-						<input type="text" class="form-control input-sm" id="precio" name="precio"> -->
+						<label>Descripcion</label><textarea class="form-control input-sm" id="descripcion" name="descripcion" rows="3"></textarea>
 						<label>Imagen</label>
 						<input type="file" id="imagen" name="imagen">
 						<p></p>
@@ -105,46 +74,11 @@ if (isset($_SESSION['usuario'])) {
 					<h3 class="panel-title">Listado</h3>
 				</div>
 				<div class="panel-body">
-					<!-- <table class="table table-hover">
-
-                </table> -->
 					<div id="tablaArticulosLoad"></div>
 				</div>
 			</div>
 		</div>
 
-
-		<!-- <div class="container">
-			<h1>Articulos</h1>
-			<div class="row">
-				<div class="col-sm-4">
-					<form id="frmArticulos" enctype="multipart/form-data">
-						<label>Categoria</label>
-						<select class="form-control input-sm" id="categoriaSelect" name="categoriaSelect">
-							<option value="A">Selecciona Categoria</option>
-							<?php while ($ver = mysqli_fetch_row($result)) : ?>
-								<option value="<?php echo $ver[0] ?>"><?php echo $ver[1]; ?></option>
-							<?php endwhile; ?>
-						</select>
-						<label>Nombre</label>
-						<input type="text" class="form-control input-sm" id="nombre" name="nombre">
-						<label>Descripcion</label>
-						<input type="text" class="form-control input-sm" id="descripcion" name="descripcion">
-						<label>Cantidad</label>
-						<input type="text" class="form-control input-sm" id="cantidad" name="cantidad">
-						<label>Precio</label>
-						<input type="text" class="form-control input-sm" id="precio" name="precio">
-						<label>Imagen</label>
-						<input type="file" id="imagen" name="imagen">
-						<p></p>
-						<span id="btnAgregaArticulo" class="btn btn-primary">Agregar</span>
-					</form>
-				</div>
-				<div class="col-sm-8">
-					<div id="tablaArticulosLoad"></div>
-				</div>
-			</div>
-		</div> -->
 
 		<!-- Button trigger modal -->
 

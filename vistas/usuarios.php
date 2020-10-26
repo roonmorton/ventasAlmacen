@@ -9,7 +9,60 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 		<?php require_once "menu.php"; ?>
 	</head>
 	<body>
-		<div class="container">
+
+
+	<div class="container">
+			<h3>Usuarios</h3>
+			<hr>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Agregar</h3>
+				</div>
+				<div class="panel-body">
+					<form id="frmRegistro" >
+
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-group" style="width: 100%;">
+								<label>Nombre</label>
+						<input type="text" class="form-control input-sm" name="nombre" id="nombre">
+						</div>
+
+							</div>
+							<div class="col-sm-6">
+							<label>Apellido</label>
+						<input type="text" class="form-control input-sm" name="apellido" id="apellido">
+						
+
+							</div>
+
+						</div>
+
+						<label>Usuario</label>
+						<input type="text" class="form-control input-sm" name="usuario" id="usuario">
+						
+						<label>Password</label>
+						<input type="text" class="form-control input-sm" name="password" id="password">
+						<p></p>
+						<span class="btn btn-primary" id="registro">Registrar</span>
+
+
+						<!-- <span id="btnAgregaArticulo" class="btn btn-primary">Agregar</span> -->
+					</form>
+				</div>
+			</div>
+			<br>
+			<div class="panel  panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Listado</h3>
+				</div>
+				<div class="panel-body">
+				<div id="tablaUsuariosLoad"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="container">
 			<h1>Administrar usuarios</h1>
 			<div class="row">
 				<div class="col-sm-4">
@@ -31,7 +84,7 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 					<div id="tablaUsuariosLoad"></div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 
 		<!-- Button trigger modal -->
