@@ -26,7 +26,7 @@
 
           <ul class="nav navbar-nav navbar-right">
 
-            <li class="active"><a href="inicio.php"><span class="glyphicon glyphicon-home"></span> Inicio</a>
+            <li class="active"><a href="/ventasAlmacen/vistas/inicio.php"><span class="glyphicon glyphicon-home"></span> Inicio</a>
             </li>
 
 
@@ -34,8 +34,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Catalogos <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="categorias.php">Categorias</a></li>
-                <li><a href="articulos.php">Articulos</a></li>
+                <li><a href="/ventasAlmacen/vistas/categorias.php">Categorias</a></li>
+                <li><a href="/ventasAlmacen/vistas/articulos.php">Articulos</a></li>
               </ul>
             </li>
 
@@ -44,14 +44,14 @@
             <?php
             if ($_SESSION['usuario'] == "admin") :
             ?>
-              <li><a href="usuarios.php"><span class="glyphicon glyphicon-user"></span> Usuarios</a>
+              <li><a href="/ventasAlmacen/vistas/usuarios.php"><span class="glyphicon glyphicon-user"></span> Usuarios</a>
               </li>
             <?php
             endif;
             ?>
 
 
-            <li><a href="clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
+            <li><a href="/ventasAlmacen/vistas/clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
             </li>
 
             <!-- <li><a href="ventas.php"></span> Venta</a>
@@ -60,23 +60,23 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span> Movimientos <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="Caja.php">Caja</a></li>
+                <li><a href="/ventasAlmacen/vistas/Caja.php">Caja</a></li>
                 <li>
-                <li><a href="ventas.php"></span> Venta</a>
+                <li><a href="/ventasAlmacen/vistas/ventas.php"></span> Venta</a>
                 </li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Reportes <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="ReporteVentas.php">Ventas</a></li>
-                <li><a href="articulos.php">Articulos</a></li>
+                <li><a href="/ventasAlmacen/vistas/ReporteVentas.php">Ventas</a></li>
+                <!-- <li><a href="/ventasAlmacen/vistas/articulos.php">Articulos</a></li> -->
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" style="color: red" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario: <?php echo $_SESSION['usuario']; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li> <a style="color: red" href="../procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
+                <li> <a style="color: red" href="/ventasAlmacen/vistas/procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
 
               </ul>
             </li>

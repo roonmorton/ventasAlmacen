@@ -10,7 +10,8 @@ $sql = "SELECT id_cliente,
 				direccion,
 				email,
 				telefono,
-				rfc 
+				rfc,
+				puntos 
 		from clientes";
 $result = mysqli_query($conexion, $sql);
 ?>
@@ -20,12 +21,16 @@ $result = mysqli_query($conexion, $sql);
 <table class="table table-hover">
 	<thead>
 		<tr>
+		<th>CODIGO</th>
+
 			<th>NOMBRE</th>
 			<th>APELLIDO</td>
 			<th>DIRECCION</th>
 			<th>CORREO</th>
 			<th>TELEFONO</th>
 			<th>NIT</th>
+			<th>PUNTOS ACUM</th>
+
 			<th>ACCIONES</th>
 		</tr>
 	</thead>
@@ -41,6 +46,8 @@ $result = mysqli_query($conexion, $sql);
 				<td style="vertical-align: middle;"><?php echo $ver[4]; ?></td>
 				<td style="vertical-align: middle;"><?php echo $ver[5]; ?></td>
 				<td style="vertical-align: middle;"><?php echo $ver[6]; ?></td>
+				<td style="vertical-align: middle;"><?php echo $ver[7]; ?></td>
+
 				<td style="vertical-align: middle;">
 					<span class="btn btn-warning btn-xs" data-toggle="modal" data-target="#abremodalClientesUpdate" onclick="agregaDatosCliente('<?php echo $ver[0]; ?>')">
 						<span class="glyphicon glyphicon-pencil"></span>

@@ -5,8 +5,14 @@
 	$c= new conectar();
 	$conexion=$c->conexion();
 
-
-	$idcliente=$_POST['clienteVenta'];
+	if(isset($_SESSION['idCliente'])){
+		/* $_SESSION['idCliente'] = $_POST['clienteVenta']; */
+		$idcliente = $_SESSION['idCliente'] ;
+	}else{
+		$idcliente = $_POST['clienteVenta'];
+		$_SESSION['idCliente'] =$idcliente;
+	}
+	/* $idcliente=$_POST['clienteVenta']; */
 	$idproducto=$_POST['productoVenta'];
 	$descripcion=$_POST['descripcionV'];
 	$cantidad=$_POST['cantidadV'];

@@ -60,6 +60,11 @@ if (isset($_SESSION['usuario'])) {
 								</div>
 							</div>
 						</div>
+						<label>Puntos</label>
+						<div class="input-group">
+							<span class="input-group-addon">P</span>
+							<input type="text" class="form-control input-sm" id="puntos" name="puntos">
+						</div>
 						<label>Descripcion</label><textarea class="form-control input-sm" id="descripcion" name="descripcion" rows="3"></textarea>
 						<label>Imagen</label>
 						<input type="file" id="imagen" name="imagen">
@@ -113,7 +118,13 @@ if (isset($_SESSION['usuario'])) {
 							<input type="text" class="form-control input-sm" id="cantidadU" name="cantidadU">
 							<label>Precio</label>
 							<input type="text" class="form-control input-sm" id="precioU" name="precioU">
+							<label>Puntos</label>
 
+							<div class="input-group">
+
+								<span class="input-group-addon">P</span>
+								<input type="text" class="form-control input-sm" id="puntosU" name="puntosU">
+							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -143,6 +154,7 @@ if (isset($_SESSION['usuario'])) {
 					$('#descripcionU').val(dato['descripcion']);
 					$('#cantidadU').val(dato['cantidad']);
 					$('#precioU').val(dato['precio']);
+					$('#puntosU').val(dato['puntos']);
 
 				}
 			});

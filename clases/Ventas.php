@@ -47,7 +47,9 @@ class ventas
 
 		$resul = mysqli_query($conexion, $sql);
 		$id = mysqli_fetch_row($resul);
-
+		$total = 0;
+		$puntos = 0;
+		$idCliente = 0;
 		if ($id == "" or $id == null or $id == 0) {
 			return -2;
 		} else {
@@ -62,9 +64,13 @@ class ventas
 			for ($i = 0; $i < count($datos); $i++) {
 				$d = explode("||", $datos[$i]);
 
-				$sql = 'select cantidad from articulos where id_producto =' . $d[0];
+				$sql = 'select cantidad, precio, puntos from articulos where id_producto =' . $d[0];
 				$sProducto = mysqli_query($conexion, $sql);
-				$cantidad = mysqli_fetch_row($sProducto)[0];
+				$producto = mysqli_fetch_row($sProducto);
+				$cantidad = $producto[0];
+				$precio = $producto[1];
+				$p = $producto[2];
+				$idCliente = $d[5];
 
 				if ($cantidad > 0) {
 
@@ -78,19 +84,25 @@ class ventas
 				idCajaVentas
 				)
 	values ('$idventa',
-			'$d[5]',
+			'$idCliente',
 			'$d[0]',
 			'$idusuario',
-			'$d[3]',
+			'$precio',
 			'$fecha',
 			'$d[6]',
 			$caja)";
+
 					$r = $r + $result = mysqli_query($conexion, $sql);
 
 					$sql = 'UPDATE articulos set cantidad = (cantidad-1) where id_producto =' . $d[0];
 					mysqli_query($conexion, $sql);
 					array_push($rollback, $d[0]);
+					$total = $total + (int)$precio;
+					$puntos = $puntos + (int)$p;
+
 				} else {
+					$total = 0;
+					$puntos = 0;
 					for ($ii = 0; $ii < count($rollback); $ii++) {
 						$sql = 'UPDATE articulos set cantidad = (cantidad+1) where id_producto =' . $rollback[$ii];
 						mysqli_query($conexion, $sql);
@@ -99,6 +111,27 @@ class ventas
 					$sProducto = mysqli_query($conexion, $sql);
 					$r = -1;
 					break;
+				}
+			}
+			if($puntos > 0 && $idCliente != 0 ){
+				$sql = "update clientes set puntos = puntos + $puntos where id_cliente = $idCliente";
+				$sCupones = mysqli_query($conexion, $sql);	
+			}
+
+			if ($total > 50) {
+				$sql = "SELECT count(1) FROM cupones";
+				$sCupones = mysqli_query($conexion, $sql);
+				$cantidad = mysqli_fetch_row($sCupones)[0];
+				$cuponRand =  rand(1, $cantidad);
+				$sql = "select idCupon, cantidad from cupones where idCupon = $cuponRand";
+
+				$sCupon = mysqli_query($conexion, $sql);
+				$cupon = mysqli_fetch_row($sCupon);
+				if ($cupon != null && $cupon[1] > 0) {
+					$sql = "update cupones set cantidad = (cantidad-1) where idCupon = $cupon[0]";
+					mysqli_query($conexion, $sql);
+					$sql = "INSERT INTO CUPONES_VENTAS(idCupon, idVenta) values($cupon[0],$idventa)";
+					mysqli_query($conexion, $sql);
 				}
 			}
 			return $r;

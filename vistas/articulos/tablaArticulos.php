@@ -8,7 +8,8 @@ $sql = "SELECT art.nombre,
 					art.precio, 
 					img.ruta, 
 					cat.nombreCategoria, 
-					art.id_producto 
+					art.id_producto,
+					art.puntos
 		  from articulos as art 
 		  inner join imagenes as img 
 		  on art.id_imagen=img.id_imagen 
@@ -27,6 +28,8 @@ $result = mysqli_query($conexion, $sql);
 			<th>CATEGORIA</th>
 			<th>PRECIO</th>
 			<th>CANTIDAD</th>
+			<th>PUNTOS</th>
+
 			<th>ACCIONES</th>
 		</tr>
 	</thead>
@@ -47,6 +50,8 @@ $result = mysqli_query($conexion, $sql);
 				<td style="vertical-align: middle;"><?php echo $ver[5]; ?></td>
 				<td style="vertical-align: middle;"><?php echo $ver[3]; ?></td>
 				<td style="vertical-align: middle;"><?php echo $ver[2]; ?></td>
+				<td style="vertical-align: middle;"><?php echo $ver[7]; ?></td>
+
 				<td style="vertical-align: middle;">
 					<span data-toggle="modal" data-target="#abremodalUpdateArticulo" class="btn btn-warning btn-xs" onclick="agregaDatosArticulo('<?php echo $ver[6] ?>')">
 						<span class="glyphicon glyphicon-pencil"></span>

@@ -11,7 +11,8 @@ $datos=array(
 	    $_POST['nombreU'],
 	    $_POST['descripcionU'],
 	    $_POST['cantidadU'],
-	    $_POST['precioU']
+		$_POST['precioU'],
+		$_POST['puntosU']
 			);
 
     echo $obj->actualizaArticulo($datos);
