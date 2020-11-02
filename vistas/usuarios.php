@@ -32,10 +32,8 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 							<div class="col-sm-6">
 							<label>Apellido</label>
 						<input type="text" class="form-control input-sm" name="apellido" id="apellido">
-						
-
+					
 							</div>
-
 						</div>
 
 						<label>Usuario</label>
@@ -46,8 +44,6 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 						<p></p>
 						<span class="btn btn-primary" id="registro">Registrar</span>
 
-
-						<!-- <span id="btnAgregaArticulo" class="btn btn-primary">Agregar</span> -->
 					</form>
 				</div>
 			</div>
@@ -61,33 +57,6 @@ if(isset($_SESSION['usuario']) and $_SESSION['usuario']=='admin'){
 				</div>
 			</div>
 		</div>
-
-		<!-- <div class="container">
-			<h1>Administrar usuarios</h1>
-			<div class="row">
-				<div class="col-sm-4">
-					<form id="frmRegistro">
-						<label>Nombre</label>
-						<input type="text" class="form-control input-sm" name="nombre" id="nombre">
-						<label>Apellido</label>
-						<input type="text" class="form-control input-sm" name="apellido" id="apellido">
-						<label>Usuario</label>
-						<input type="text" class="form-control input-sm" name="usuario" id="usuario">
-						<label>Password</label>
-						<input type="text" class="form-control input-sm" name="password" id="password">
-						<p></p>
-						<span class="btn btn-primary" id="registro">Registrar</span>
-
-					</form>
-				</div>
-				<div class="col-sm-7">
-					<div id="tablaUsuariosLoad"></div>
-				</div>
-			</div>
-		</div> -->
-
-
-		<!-- Button trigger modal -->
 
 
 		<!-- Modal -->

@@ -16,24 +16,8 @@
 	<div class="container">
 			<div id="ventaProductos"></div>
 			
-          <!--   <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Crear</h3>
-                </div>
-                <div class="panel-body">
-                </div>
-            </div> -->
-		 
-		 <!-- <div class="row">
-		 	<div class="col-sm-12">
-		 		<span class="btn btn-default" id="ventaProductosBtn">Vender producto</span>
-		 		<span class="btn btn-default" id="ventasHechasBtn">Ventas hechas</span>
-		 	</div>
-		 </div> -->
 		 <div class="row">
 		 	<div class="col-sm-12">
-		 		<!-- <div id="ventaProductos"></div>
-		 		<div id="ventasHechas"></div> -->
 		 	</div>
 		 </div>
 	</div>
@@ -43,16 +27,6 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#ventaProductos').load('ventas/ventasDeProductos.php');
-			/* $('#ventaProductosBtn').click(function(){
-				esconderSeccionVenta();
-				$('#ventaProductos').load('ventas/ventasDeProductos.php');
-				$('#ventaProductos').show();
-			});
-			$('#ventasHechasBtn').click(function(){
-				esconderSeccionVenta();
-				$('#ventasHechas').load('ventas/ventasyReportes.php');
-				$('#ventasHechas').show();
-			}); */
 		});
 
 		function esconderSeccionVenta(){

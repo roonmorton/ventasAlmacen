@@ -136,7 +136,7 @@ if (isset($_SESSION['usuario'])) {
 				<tfoot>
 					<tr>
 						<td colspan="4" style="text-align: right;"><strong>Total</strong></td>
-						<td> <strong><?php echo "Q ." . $total ?> </strong> </td>
+						<td> <strong><?php echo "Q." . $total ?> </strong> </td>
 					</tr>
 				</tfoot>
 			</table>
@@ -250,7 +250,7 @@ on cli.id_cliente = ve.id_cliente group by ve.id_venta";
 				width: 500px;
 				margin: 1em auto;
 				border: solid 1px #e9e5e5;
-    padding: 10px;
+				padding: 10px;
 			}
 
 			.img-thumbnail {
@@ -333,10 +333,9 @@ AND cv.idVenta = $folio";
 				if ($img == null || $img == '') {
 					$text = $cupon[2] . ' || ' . $cupon[3];
 					if ($puntos > 0) {
-						$text += " || Ganaste $puntos puntos";
+						$text = $text . " || Ganaste $puntos puntos";
 					}
 					$fileName = "codes/" . date('d-m-Y-h-i-s') . '.png';
-					echo $fileName;
 					QRcode::png($text, $fileName, 'H', 10);
 					$sql = "update cupones_ventas set img = '$fileName' where idCuponesVentas = $cupon[4]";
 					mysqli_query($conexion, $sql);
@@ -347,9 +346,9 @@ AND cv.idVenta = $folio";
 			} else {
 				$text = '';
 				if ($puntos > 0) {
-					$text += "Ganaste $puntos puntos";
+					$text = "";
+					$text = "Ganaste " . strval($puntos) . " puntos";
 					$fileName = "codes/" . date('d-m-Y-h-i-s') . '.png';
-					echo $fileName;
 					QRcode::png($text, $fileName, 'H', 10);
 					echo '<img class="img-thumbnail" src="' . $fileName . '"  width="360"/>';
 				}

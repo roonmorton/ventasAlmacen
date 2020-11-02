@@ -47,7 +47,6 @@
 		$_SESSION['caja'] = $_POST['idCaja'];
 	}
 	
-	print_r($_SESSION['caja']);
 	$_SESSION['tablaComprasTemp'][]=$articulo;
 
  ?>

@@ -76,7 +76,7 @@
             <li class="dropdown">
               <a href="#" style="color: red" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario: <?php echo $_SESSION['usuario']; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li> <a style="color: red" href="/ventasAlmacen/vistas/procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
+                <li> <a style="color: red" href="/ventasAlmacen/procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
 
               </ul>
             </li>
