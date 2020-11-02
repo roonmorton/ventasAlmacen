@@ -123,7 +123,7 @@ class ventas
 				$sCupones = mysqli_query($conexion, $sql);
 				$cantidad = mysqli_fetch_row($sCupones)[0];
 				$cuponRand =  rand(1, $cantidad);
-				$sql = "select idCupon, cantidad from cupones where idCupon = $cuponRand";
+				$sql = "select idCupon, cantidad from cupones where idCupon = $cuponRand and cantidad > 0";
 
 				$sCupon = mysqli_query($conexion, $sql);
 				$cupon = mysqli_fetch_row($sCupon);
@@ -143,7 +143,7 @@ class ventas
 		$c = new conectar();
 		$conexion = $c->conexion();
 
-		$sql = "SELECT id_venta from ventas group by id_venta desc";
+		$sql = "SELECT count(1) from ventas";
 
 		$resul = mysqli_query($conexion, $sql);
 		$id = mysqli_fetch_row($resul)[0];

@@ -5,13 +5,18 @@
 
 <head>
   <title></title>
+
+  <style>
+    a{
+      color: #fff;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Begin Navbar -->
   <div id="nav">
-    <div class="navbar navbar-inverse navbar-fixed-top" data-spy="affix" data-offset-top="100">
+    <div class="navbar  navbar-fixed-top" data-spy="affix" data-offset-top="100" style="background-color:#0535A4!important;">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -19,17 +24,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <!-- <a class="navbar-brand" href="inicio.php"><img class="img-responsive logo img-thumbnail" src="../img/ventas.jpg" alt="" width="150px" height="150px"></a> -->
-        </div>
+          </button> </div>
         <div id="navbar" class="collapse navbar-collapse">
 
           <ul class="nav navbar-nav navbar-right">
 
-            <li class="active"><a href="/ventasAlmacen/vistas/inicio.php"><span class="glyphicon glyphicon-home"></span> Inicio</a>
+            <li class="active"><a href="/ventasAlmacen/vistas/inicio.php" ><span class="glyphicon glyphicon-home"></span> Inicio</a>
             </li>
-
-
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Catalogos <span class="caret"></span></a>
@@ -38,9 +39,6 @@
                 <li><a href="/ventasAlmacen/vistas/articulos.php">Articulos</a></li>
               </ul>
             </li>
-
-
-
             <?php
             if ($_SESSION['usuario'] == "admin") :
             ?>
@@ -49,14 +47,8 @@
             <?php
             endif;
             ?>
-
-
             <li><a href="/ventasAlmacen/vistas/clientes.php"><span class="glyphicon glyphicon-user"></span> Clientes</a>
             </li>
-
-            <!-- <li><a href="ventas.php"></span> Venta</a>
-            </li>
- -->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span> Movimientos <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -70,30 +62,22 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Reportes <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/ventasAlmacen/vistas/ReporteVentas.php">Ventas</a></li>
-                <!-- <li><a href="/ventasAlmacen/vistas/articulos.php">Articulos</a></li> -->
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" style="color: red" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Usuario: <?php echo $_SESSION['usuario']; ?> <span class="caret"></span></a>
+              <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-user"></span> Usuario: <?php echo $_SESSION['usuario']; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li> <a style="color: red" href="/ventasAlmacen/procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
+                <li> <a  href="/ventasAlmacen/procesos/salir.php"><span class="glyphicon glyphicon-off"></span> Salir</a></li>
 
               </ul>
             </li>
           </ul>
         </div>
-        <!--/.nav-collapse -->
       </div>
-      <!--/.contatiner -->
     </div>
   </div>
-  <!-- Main jumbotron for a primary marketing message or call to action -->
 
-
-
-
-
-  <!-- /container -->
 
 
 </body>

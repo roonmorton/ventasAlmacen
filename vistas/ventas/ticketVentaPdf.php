@@ -27,7 +27,7 @@ if (isset($_SESSION['usuario'])) {
 		art.nombre,
         art.precio,
         art.descripcion,
-		cli.rfc,
+		cli.nit,
 		concat(cli.nombre, ' ' , cli.apellido),
 		sum(art.puntos)
 	from ventas  as ve 
@@ -208,7 +208,7 @@ if (isset($_SESSION['usuario'])) {
 	art.nombre,
 	art.precio,
 	art.descripcion,
-	cli.rfc,
+	cli.nit,
 	concat(cli.nombre, ' ' , cli.apellido),
 	sum(art.puntos)
 from ventas  as ve 

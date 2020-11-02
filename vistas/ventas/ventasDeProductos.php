@@ -24,8 +24,8 @@ $conexion = $c->conexion();
 			</select>
 			<label>Cliente</label>
 			<select class="form-control" id="clienteVenta" name="clienteVenta">
-				<option value="A">Selecciona</option>
-				<option value="0">Sin cliente</option>
+				<option value="">Selecciona</option>
+				
 				<?php
 				$sql = "SELECT id_cliente,nombre,apellido 
 				from clientes";

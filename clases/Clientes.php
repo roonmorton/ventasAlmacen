@@ -14,7 +14,7 @@
 										direccion,
 										email,
 										telefono,
-										rfc)
+										nit)
 							values ('$idusuario',
 									'$datos[0]',
 									'$datos[1]',
@@ -35,7 +35,7 @@
 							direccion,
 							email,
 							telefono,
-							rfc 
+							nit 
 				from clientes";
 			$result=mysqli_query($conexion,$sql);
 			$ver=mysqli_fetch_row($result);
@@ -47,7 +47,7 @@
 					'direccion' => $ver[3],
 					'email' => $ver[4],
 					'telefono' => $ver[5],
-					'rfc' => $ver[6]
+					'nit' => $ver[6]
 						);
 			return $datos;
 		}
@@ -60,7 +60,7 @@
 										direccion='$datos[3]',
 										email='$datos[4]',
 										telefono='$datos[5]',
-										rfc='$datos[6]' 
+										nit='$datos[6]' 
 								where id_cliente='$datos[0]'";
 			return mysqli_query($conexion,$sql);
 		}

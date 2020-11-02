@@ -10,7 +10,7 @@ $sql = "SELECT id_cliente,
 				direccion,
 				email,
 				telefono,
-				rfc,
+				nit,
 				puntos 
 		from clientes";
 $result = mysqli_query($conexion, $sql);

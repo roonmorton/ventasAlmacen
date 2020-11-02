@@ -8,11 +8,11 @@
 
 			$fecha=date('Y-m-d');
 
-			$sql="INSERT into imagenes (id_categoria,
+			$sql="INSERT into imagenes (
 										nombre,
 										ruta,
 										fechaSubida)
-							values ('$datos[0]',
+							values (
 									'$datos[1]',
 									'$datos[2]',
 									'$fecha')";
