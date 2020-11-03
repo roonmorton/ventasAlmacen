@@ -13,7 +13,11 @@
 </head>
 <body>
 
-
+	<div class="container">
+		<h1 style="text-align: center;">Bienvenido</h1>
+		<hr>
+		<img src="../img/compras.jpg" alt="" style="width: 100%;">
+	</div>
 </body>
 </html>
 <?php 
