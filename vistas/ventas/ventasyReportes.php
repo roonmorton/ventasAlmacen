@@ -35,42 +35,45 @@ $result = mysqli_query($conexion, $sql);
 					</tr>
 				</thead>
 				<tbody>
-					<?php while ($ver = mysqli_fetch_row($result)) : ?>
+					<?php
+					if ($result) {
+						while ($ver = mysqli_fetch_row($result)) { ?>
 
-						<tr>
-							<td><?php echo $ver[0]; ?></td>
-							<td><?php echo $ver[1] ?></td>
-							<td>
-								<?php
-								if ($obj->nombreCliente($ver[2]) == " ") {
-									echo "C/F";
-								} else {
-									echo $obj->nombreCliente($ver[2]);
-								}
-								?>
-							</td>
-							<td>
-								<?php
-								echo  'Q. ' . $ver[4]
-								?>
-							</td>
-							<td>
-								<?php
-								echo  $ver[5] == 'E' ? 'EFECTIVO' : ($ver[5] == 'T' ? 'TARJETA' : '');
-								?>
-							</td>
-							<td>
-								<?php
-								echo  $ver[3]
-								?>
-							</td>
-							<td>
-								<a href="./ventas/ticketVentaPdf.php?idventa=<?php echo $ver[0] ?>" class="btn btn-info btn-sm">
-									Comprobante <span class="glyphicon glyphicon-list-alt"></span>
-								</a>
-							</td>
-						</tr>
-					<?php endwhile; ?>
+							<tr>
+								<td><?php echo $ver[0]; ?></td>
+								<td><?php echo $ver[1] ?></td>
+								<td>
+									<?php
+									if ($obj->nombreCliente($ver[2]) == " ") {
+										echo "C/F";
+									} else {
+										echo $obj->nombreCliente($ver[2]);
+									}
+									?>
+								</td>
+								<td>
+									<?php
+									echo  'Q. ' . $ver[4]
+									?>
+								</td>
+								<td>
+									<?php
+									echo  $ver[5] == 'E' ? 'EFECTIVO' : ($ver[5] == 'T' ? 'TARJETA' : '');
+									?>
+								</td>
+								<td>
+									<?php
+									echo  $ver[3]
+									?>
+								</td>
+								<td>
+									<a href="./ventas/ticketVentaPdf.php?idventa=<?php echo $ver[0] ?>" class="btn btn-info btn-sm">
+										Comprobante <span class="glyphicon glyphicon-list-alt"></span>
+									</a>
+								</td>
+							</tr>
+					<?php }
+					} ?>
 				</tbody>
 			</table>
 		</div>

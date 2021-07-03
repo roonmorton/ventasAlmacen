@@ -149,7 +149,7 @@ if (isset($_SESSION['usuario'])) {
 			$sCupon = mysqli_query($conexion, $sql);
 			$cupon = mysqli_fetch_row($sCupon);
 			if ($cupon != null) {
-				$img = $cupon[1];
+				$img = $cupon[1]; //url imagen
 				if ($img == null || $img == '') {
 					$text = $cupon[2] . ' || ' . $cupon[3];
 					if ($puntos > 0) {
